@@ -23,6 +23,7 @@
   --container-color: #fff;
   --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
   --scroll-thumb-color: hsl(var(--hue-color), 12%, 80%);
+  --theme-color-dark: hsl(186, 72%, 24%);
 
   /*========== Font and typography ==========*/
   --body-font: "Poppins", sans-serif;
@@ -146,6 +147,7 @@ img {
 .section {
   padding: 2rem 0 4rem;
   margin-bottom: 40px;
+  
 }
 
 .section__title {
@@ -196,6 +198,7 @@ img {
 
 .nav__logo,
 .nav__toggle {
+  padding-left: 5em;
   color: var(--title-color);
   font-weight: var(--font-medium);
 }
@@ -228,6 +231,7 @@ img {
 }
 
 .nav__list {
+  padding-right: 3em;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
@@ -235,9 +239,9 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: var(--small-font-size);
-  color: var(--title-color);
-  font-weight: var(--font-medium);
+  font-size: var(--medium-font-size);
+  color: white;
+  font-weight: var(--font-semi-bold);
 }
 
 .nav__link:hover {
@@ -280,7 +284,10 @@ img {
 
 /*==================== HOME ====================*/
 
-
+.home{
+  background-image: url("../images/hero-bg.png");
+  background-color: var(--theme-color-dark);
+}
 
 .home__container {
   gap: 1rem;
@@ -323,6 +330,11 @@ img {
 
 .home__title {
   font-size: var(--big-font-size);
+  color: white;
+}
+
+.home-sub{
+  color: white;
 }
 
 .hero-img{
@@ -346,7 +358,7 @@ img {
 
 .home__subtitle {
   font-size: var(--h3-font-size);
-  color: var(--text-color);
+  color: #c2b4b49d;
   font-weight: var(--font-medium);
   margin-bottom: var(--mb-0-75);
 }
@@ -700,7 +712,7 @@ img {
 .services__content {
   position: relative;
   background-color: var(--container-color);
-  padding: 3.5rem 0.5rem 1.25rem 1.5rem;
+  padding: 3.5em 0.5em 1.25rem 1.5rem;
   border-radius: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   transition: 0.3s;
@@ -721,6 +733,8 @@ img {
   font-size: var(--h3-font-size);
   margin-bottom: var(--mb-1);
   font-weight: var(--font-medium);
+  position: relative;
+  left: 0.75em;
 }
 
 .services__button {
@@ -918,7 +932,14 @@ img {
   bottom: 0;
 }
 
-/* =================== ACHIEVEMENTS ==================*/
+/* =================== DEPARTMENTS ==================*/
+.department-icons{
+  position: relative;
+  left: 0.9em;
+  height: 3em;
+  width: 3em;
+}
+
 .work__container {
   row-gap: 2rem;
 }
