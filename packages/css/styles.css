@@ -1030,7 +1030,7 @@ img {
   font-size: var(--small-font-size);
 }
 
-.footer__links {
+.footer__link {
   display: flex;
   flex-direction: column;
   row-gap: 1.5rem;
