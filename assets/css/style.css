@@ -1,0 +1,114 @@
+/* ============CSS VARIABLES========= */
+:root
+{
+    /* COLORS */
+    --theme-color-dark: hsl(186, 72%, 24%);
+    --theme-color-light: hsl(190, 69%, 61%);
+    --subtitle-color-grey: #9c9797;
+    --subtitle-color-theme: hsl(186, 62%, 56%);
+
+    /* FONTS */
+    --body-font: "Poppins", sans-serif;
+}
+/* ==================TAGS=============== */
+header
+{
+    background-color: var(--theme-color-dark);
+}
+
+footer
+{
+    background-color: var(--theme-color-dark);
+    background-image: url(/assets/images/footer-bg.png);
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+/* ===============REUSABLE CLASSES============= */
+
+.body-white-text-strong
+{
+    color: white;
+    font-family: var(--body-font);
+    font-weight: bold;
+}
+
+.s-1
+{
+    font-size: 1.2em;
+}
+
+/* ===========NAVIGATION========== */
+
+.nav-link
+{
+    color: white;
+    font-family: var(--body-font);
+    font-weight: bold;
+}
+
+.appointment-button
+{
+    border-radius: 10px;
+    border: none;
+    padding: 0.5em;
+    background-color: var(--theme-color-light);
+    color: white;
+    font-family: var(--body-font);
+    font-weight: bold;
+}
+
+/* =================HOMEPAGE=============== */
+.home
+{
+    background-color: var(--theme-color-dark);
+    background-image: url(../images/hero-bg.png);   
+}
+
+.hero-text
+{
+    font-size: 4em;
+}
+
+.hero-subtitle
+{
+    font-family: var(--body-font);
+    color: var(--subtitle-color-grey);
+    font-size: 2em;
+}
+
+.fa
+{
+    color: var(--theme-color-light);
+    text-decoration: none;
+    font-size: larger;
+}
+
+.department-icon
+{
+    max-width: 100px;
+    height: auto;
+    border: none;
+}
+.card-link
+{
+    text-decoration: none;
+    color: var(--theme-color-light);
+}
+
+.department-card
+{
+    width: 18rem; 
+    padding-top: 4em; 
+    padding-bottom: 4em;
+    box-shadow: 1px 2px 5px var(--theme-color-light);
+}
+
+/* =========================FOOTER=========================== */
+
+.footer-subtext
+{
+    color: white;
+    opacity: 0.7;
+    text-decoration: none;
+}
