@@ -104,7 +104,8 @@ footer
     box-shadow: 1px 2px 5px var(--theme-color-light);
 }
  /* home animation keyframes */
-#homeanimation {
+.hero-animation
+{
     animation: 1s slide-right;
   }
   @keyframes slide-right {
