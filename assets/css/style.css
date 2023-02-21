@@ -104,6 +104,17 @@ footer
     box-shadow: 1px 2px 5px var(--theme-color-light);
 }
 
+#homeanimation {
+    animation: 3s slide-right;
+  }
+  @keyframes slide-right {
+    from {
+      margin-left: -100%;
+    }
+    to {
+      margin-left: 0%;
+    }
+  }
 /* =========================FOOTER=========================== */
 
 .footer-subtext
