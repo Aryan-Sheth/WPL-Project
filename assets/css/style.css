@@ -107,7 +107,8 @@ footer
 .hero-animation
 {
     animation: 1s slide-right;
-  }
+    animation-delay: calc(var(--order)) * 100ms;
+}
   @keyframes slide-right {
     from {
       margin-left: -10%;
