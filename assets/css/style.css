@@ -103,16 +103,18 @@ footer
     padding-bottom: 4em;
     box-shadow: 1px 2px 5px var(--theme-color-light);
 }
-
+ /* home animation keyframes */
 #homeanimation {
-    animation: 3s slide-right;
+    animation: 1s slide-right;
   }
   @keyframes slide-right {
     from {
-      margin-left: -100%;
+      margin-left: -10%;
+      opacity: 30%;
     }
     to {
       margin-left: 0%;
+      opacity: 100%;
     }
   }
 /* =========================FOOTER=========================== */
