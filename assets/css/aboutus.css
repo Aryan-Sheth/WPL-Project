@@ -38,6 +38,8 @@ footer
     font-size: 1.2em;
 }
 
+
+
 /* ===========NAVIGATION========== */
 
 .nav-link
@@ -68,6 +70,7 @@ footer
 .hero-text
 {
     font-size: 4em;
+    text-align: center;
 }
 
 .hero-subtitle
@@ -100,6 +103,10 @@ footer
       opacity: 100%;
     }
   }
+
+/* =========================ABOUT US=========================== */
+
+
 /* =========================FOOTER=========================== */
 
 .footer-subtext
