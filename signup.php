@@ -1,35 +1,34 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$email = "";
-$password = "";
-$dbname = "wpl";
-$user = $_POST["user"];
-$email = $_POST["email"];
-$password = $_POST["pass"];
+<html>
+    <body>
+        <?php
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "wpl";
 
-$sql = "INSERT INTO signup (username, email, password)
-VALUES ('".$user."','".$email."','".$password."')";
+        $conn = new mysqli($servername,$username,$password,$dbname);
 
-if ($conn->query($sql) === TRUE) {
-  // echo "New record created successfully";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
+        if($conn->connect_error)
+        {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
-$conn->close();
+        $sql = "insert into users values('".$_POST["user"]."','".$_POST["email"]."','".$_POST["pass"]."');";
 
-header("Location: index.html");
-die();
+        if ($conn->query($sql) === TRUE) 
+        {
+            // echo "New record created successfully";
+        } 
+        else 
+        {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+         
+        
+        $conn->close();
 
-
-// echo $_POST["fname"]; 
-// echo $_POST["lname"];
-?>
+        header("Location: index.html");
+        ?>
+    </body>
+</html> 

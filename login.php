@@ -1,33 +1,45 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "wpl";
-$name = $_POST["fname"];
-$email = $_POST["lname"];
+<html>
+    <body>
+        <?php
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "wpl";
 
-$sql = "INSERT INTO login (username, password)
-VALUES ('".$name."','".$email."')";
+        $conn = new mysqli($servername,$username,$password,$dbname);
 
-if ($conn->query($sql) === TRUE) {
-  // echo "New record created successfully";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
+        if($conn->connect_error)
+        {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
-$conn->close();
+        $sql = "select password from users where username = ".$_POST("user")."";
 
-header("Location: index.html");
-die();
-
-
-// echo $_POST["fname"]; 
-// echo $_POST["lname"];
-?>
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) 
+        {
+            $flag = 0;
+            while($row = $result->fetch_assoc()) 
+            {
+                if($_POST("pass") == $row["password"])
+                {
+                    $flag = 1;
+                    echo("login success");
+                }
+            }
+            if($flag == 0)
+            {
+                echo("login fail");
+            }
+        } 
+        else 
+        {
+            echo("No such username");
+        }
+         
+        
+        $conn->close();
+        ?>
+    </body>
+</html> 
