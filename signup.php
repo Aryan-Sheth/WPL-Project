@@ -13,6 +13,25 @@
         {
             die("Connection failed: " . $conn->connect_error);
         }
+        //MAIL SENDING
+        $to_email = $_POST["email"];
+        $subject = "Test email to send from XAMPP";
+        $body = "Hi, This is test mail to check how to send mail from Localhost Using Gmail ";
+        $headers = "From: doclabhospital@gmail.com";
+ 
+        if (mail($to_email, $subject, $body, $headers))
+ 
+        {
+            echo "Email successfully sent to $to_email...";
+        }
+ 
+        else
+ 
+        {
+            echo '<script>alert("Email sending failed!")</script>';
+        }
+
+        //-------------------------------------
 
         $sql = "insert into users values('".$_POST["user"]."','".$_POST["email"]."','".$_POST["pass"]."');";
 
@@ -28,7 +47,7 @@
         
         $conn->close();
 
-        header("Location: index.html");
+        // header("Location: index.html");
         ?>
     </body>
 </html> 
