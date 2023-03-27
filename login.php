@@ -13,8 +13,8 @@
         {
             die("Connection failed: " . $conn->connect_error);
         }
-
-        $sql = "select password from users where username = ".$_POST("user")."";
+        $user = $_POST["user"];
+        $sql = "select password from users where username = '$user'";
 
         $result = $conn->query($sql);
         if ($result->num_rows > 0) 
@@ -22,10 +22,11 @@
             $flag = 0;
             while($row = $result->fetch_assoc()) 
             {
-                if($_POST("pass") == $row["password"])
+                if($_POST["pass"] == $row["password"])
                 {
                     $flag = 1;
                     echo("login success");
+                    break;
                 }
             }
             if($flag == 0)
