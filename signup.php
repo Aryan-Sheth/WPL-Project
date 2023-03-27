@@ -22,7 +22,7 @@
         if (mail($to_email, $subject, $body, $headers))
  
         {
-            echo "Email successfully sent to $to_email...";
+            echo '<script>prompt("Email sending success!")</script>';
         }
  
         else
@@ -47,7 +47,7 @@
         
         $conn->close();
 
-        // header("Location: index.html");
+        header("Location: index.html");
         ?>
     </body>
 </html> 
