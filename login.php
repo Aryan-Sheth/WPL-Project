@@ -22,7 +22,7 @@
             $flag = 0;
             while($row = $result->fetch_assoc()) 
             {
-                if($_POST["pass"] == $row["password"])
+                if(hash('sha256', $_POST["pass"]) == $row["password"])
                 {
                     $flag = 1;
                     echo("login success");
