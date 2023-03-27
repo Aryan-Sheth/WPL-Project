@@ -11,9 +11,12 @@
               <span id="email"></span>
             </p>
             <div class="wrapper">
-              <input type="text" class="field 1" id="otpField" maxlength="6">
+                <form onsubmit = "return verifyOTP()">
+                    <input type="text" class="field 1" id="otpField" maxlength="6">
+                    <input type="submit" value="Submit" style="padding-top: 10px; height: 50px; width: 100%; border: none; background-color: white; color: #0090e4; font-size: large;">
+                </form>
+              
             </div>
-            <button style="padding-top: 10px; height: 50px; width: 100%; border: none; background-color: white; color: #0090e4; font-size: large;" onclick = "verifyOTP()" >Confirm</button>
         </div>
 
         <?php
@@ -37,68 +40,33 @@
             }
         }
 
-        function updateDB()
-        {
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "wpl";
-            
-            $conn = new mysqli($servername,$username,$password,$dbname);
-    
-            if($conn->connect_error)
-            {
-                die("Connection failed: " . $conn->connect_error);
-            }
-    
-            $sql = "insert into users values('".$_POST["user"]."','".$_POST["email"]."','".$_POST["pass"]."');";
-    
-            if ($conn->query($sql) === TRUE) 
-            {
-                echo "true";
-            } 
-            else 
-            {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-             
-            
-            $conn->close();
-        }
-
         function getmail()
         {
-            echo($_POST["email"]);
+            echo $_POST["email"];
         }
-        
-        function redirect()
+        function getuser()
         {
-            header("Location: index.html");
+            echo $_POST["user"];
         }
+        function getpass()
+        {
+            echo $_POST["pass"];
+        }
+
         ?>
     </body>
 
     <script>
-
-        var password = 0;
+        
+        var password = "<?php sendOTP()?>";
+        var email = "<?php getmail()?>";
+        var user = "<?php getuser()?>";
+        var pass = "<?php getpass()?>";
 
         function loadSite()
         {
-            var email = "<?php getmail()?>";
             document.getElementById("email").innerHTML = email;
-            var sentEmail = "<?php sendOTP()?>";
-            sentEmail = parseInt(sentEmail);
-            if(sentEmail != 0)
-            {
-                password = sentEmail;
-            }
-            else
-            {
-                alert("We were unable to send an email to the provided address");
-                window.location.replace("index.html");
-            }
         }
-
         function verifyOTP()
         {
             password = parseInt(password);
@@ -106,13 +74,24 @@
             {
                 if(document.getElementById("otpField").value == password)
                 {
-                    alert("Verification Successful");
-                    var update = "<?php updateDB()?>";
-                    if(update!="true")
+                    var data = new URLSearchParams();
+                    data.append("user",user);
+                    data.append("pass",pass);
+                    data.append("email",email);
+
+                    fetch("addData.php",{
+                        method: "post",
+                        body: data
+                    })
+                    .then(function (response){
+                        window.location.replace("index.html");
+                    })
+                    .catch(function (err)
                     {
-                        alert(update);
-                    }
-                    window.location.replace("index.html");
+                        console.log(err);
+                    });
+
+                    return true;
                 }
                 else
                 {
