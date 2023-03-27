@@ -111,6 +111,11 @@ footer
     font-size: 1.7em;
 }
 
+/* DOCTOR */
+.text {
+    font-size: x-large;
+}
+
 /* =========================FOOTER=========================== */
 
 .footer-subtext
@@ -119,3 +124,4 @@ footer
     opacity: 0.7;
     text-decoration: none;
 }
+
