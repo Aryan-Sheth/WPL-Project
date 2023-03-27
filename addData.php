@@ -13,7 +13,9 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "insert into users values('".$_POST["user"]."','".$_POST["email"]."','".$_POST["pass"]."');";
+        $pass = hash('sha256', $_POST["pass"]);
+        
+        $sql = "insert into users values('".$_POST["user"]."','".$_POST["email"]."','".$pass."');";
 
         if ($conn->query($sql) === TRUE) 
         {
