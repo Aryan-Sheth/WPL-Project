@@ -128,13 +128,13 @@ form.sign-in-form {
 }
 
 .social-icon:hover {
-  color: hsl(186, 72%, 24%);
-  border-color: hsl(186, 72%, 24%);
+  color: #4d84e2;
+  border-color: #4d84e2;
 }
 
 .btn {
   width: 150px;
-  background-color: hsl(186, 72%, 24%);
+  background-color: #4d84e2;
   border: none;
   outline: none;
   height: 49px;
