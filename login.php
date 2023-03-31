@@ -39,7 +39,7 @@
             echo("No such username");
         }
          
-        
+
         $conn->close();
         ?>
     </body>
