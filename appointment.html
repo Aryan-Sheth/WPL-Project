@@ -179,12 +179,12 @@
                         <!-- date -->
                         <div class="col">
                             <label for="datepicker">Select Date:</label>
-                            <input type="text" name="date" id="date" class="form-control" required>
+                            <input type="date" name="date" id="date" class="form-control" required>
                         </div>
                         <!-- row -->
                         <div class="col">
                             <label for="timepicker">Select Time:</label>
-                            <input type="text" name="date" id="date" class="form-control" required>
+                            <input type="time" name="date" id="date" class="form-control" required>
                         </div>
                     </div>
                     <br>
@@ -240,7 +240,12 @@
                     </div>
                     <br>
                     <!-- submit button -->
-                    <button type="button" class="btn btn-primary">Book Appointment</button>
+                    <a href="index.html">
+                        <button type="button" class="btn btn-primary">
+                            Book An Appointment
+                        </button>
+                    </a>
+                    
                    </form>
                 </div>
             </div>
@@ -304,10 +309,4 @@
             </div>
         </footer>
     </body>
-    <!-- <script src="./assets/js/appointment.js"></script> -->
-    <script>
-        $(function () {
-            $('#datetimepicker1').datetimepicker();
-        });
-    </script>
 </html>
