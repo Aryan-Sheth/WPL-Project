@@ -201,6 +201,7 @@
 
         addToDatabase();
         fileUpload();
+        sleep(5);
         sendConfirmation("",false);
         sendConfirmation("aryan.sheth@somaiya.edu",true);
         
