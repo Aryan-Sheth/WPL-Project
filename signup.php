@@ -29,7 +29,7 @@
             $otp = rand(100000,999999);
             $body = "Hey, $to_email \n $otp is your One-Time Password to login to Doclab\n If you did not request to login, 
             please ignore this message";
-            $headers = "From: doclabhospital@gmail.com";
+            $headers = "From: doclabwebsite@gmail.com";
  
             if (mail($to_email, $subject, $body, $headers))
             {

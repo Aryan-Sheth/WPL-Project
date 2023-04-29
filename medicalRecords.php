@@ -109,17 +109,17 @@
 
             $deptcsv = substr($deptcsv,0,-1);
 
-            $from_email         = 'doclabhospital@gmail.com'; //from mail, sender email address
+            $from_email         = 'doclabwebsite@gmail.com'; //from mail, sender email address
 
             
             //Load POST data from HTML form
             $sender_name = "Doclab"; //sender name
-            $reply_to_email = 'doclabhospital@gmail.com'; //sender email, it will be used in "reply-to" header
+            $reply_to_email = 'doclabwebsite@gmail.com'; //sender email, it will be used in "reply-to" header
             $subject     = "Appointment Booking Confirmation"; //subject for the email
             
+
             if($doctor)
             {
-                echo '<script>alert("'.$emails.'")</script>';
                 $recipient_email = $emails;
                 $message     = "New Booking at $date $time\n\n
                                 Patient Details:\n
@@ -131,52 +131,38 @@
                                 Purpose of Checkup: $purpose\n
                                 Medical Record Attached
                                 "; 
-            }
-            else
-            {
-                echo '<script>alert("'.$email.'")</script>';
-                $recipient_email = $email;
-                $message     = "Booking Confirmed For $fname $mname $lname at $date $time for $deptcsv departments";
-            }
-        
-              
-            //Get uploaded file data using $_FILES array
-            $tmp_name = $_FILES['medicFile']['tmp_name']; // get the temporary file name of the file on the server
-            $name     = $_FILES['medicFile']['name']; // get the name of the file
-            $size     = $_FILES['medicFile']['size']; // get size of the file for size validation
-            $type     = $_FILES['medicFile']['type']; // get type of the file
-            $error     = $_FILES['medicFile']['error']; // get the error (if any)
-        
-            //validate form field for attaching the file
-            if($error > 0)
-            {
-                die('Upload error or No files uploaded');
-            }
-        
-            // //read from the uploaded file & base64_encode content
-            $handle = fopen($tmp_name, "r"); // set the file handle only for reading the file
-            $content = fread($handle, $size); // reading the file
-            fclose($handle);                 // close upon completion
-        
-            $encoded_content = chunk_split(base64_encode($content));
-            $boundary = md5("random"); // define boundary with a md5 hashed value
-        
-            //header
-            $headers = "MIME-Version: 1.0\r\n"; // Defining the MIME version
-            $headers .= "From:".$from_email."\r\n"; // Sender Email
-            $headers .= "Reply-To: ".$reply_to_email."\r\n"; // Email address to reach back
-            $headers .= "Content-Type: multipart/mixed;"; // Defining Content-Type
-            $headers .= "boundary = $boundary\r\n"; //Defining the Boundary
-                
-            //plain text
-            $body = "--$boundary\r\n";
-            $body .= "Content-Type: text/plain; charset=ISO-8859-1\r\n";
-            $body .= "Content-Transfer-Encoding: base64\r\n\r\n";
-            $body .= chunk_split(base64_encode($message));
-                
-            //attachment
-            if(!$doctor)
-            {
+
+                $tmp_name = $_FILES['medicFile']['tmp_name']; // get the temporary file name of the file on the server
+                $name     = $_FILES['medicFile']['name']; // get the name of the file
+                $size     = $_FILES['medicFile']['size']; // get size of the file for size validation
+                $type     = $_FILES['medicFile']['type']; // get type of the file
+                $error     = $_FILES['medicFile']['error']; // get the error (if any)
+
+                //validate form field for attaching the file
+                if($error > 0)
+                {
+                    die('Upload error or No files uploaded');
+                }
+
+                $handle = fopen($tmp_name, "r"); // set the file handle only for reading the file
+                $content = fread($handle, $size); // reading the file
+                fclose($handle);                 // close upon completion
+                $encoded_content = chunk_split(base64_encode($content));
+
+                $boundary = md5("random"); // define boundary with a md5 hashed value
+                //header
+                $headers = "MIME-Version: 1.0\r\n"; // Defining the MIME version
+                $headers .= "From:".$from_email."\r\n"; // Sender Email
+                $headers .= "Reply-To: ".$reply_to_email."\r\n"; // Email address to reach back
+                $headers .= "Content-Type: multipart/mixed;"; // Defining Content-Type
+                $headers .= "boundary = $boundary\r\n"; //Defining the Boundary
+                    
+                //plain text
+                $body = "--$boundary\r\n";
+                $body .= "Content-Type: text/plain; charset=ISO-8859-1\r\n";
+                $body .= "Content-Transfer-Encoding: base64\r\n\r\n";
+                $body .= chunk_split(base64_encode($message));
+
                 $body .= "--$boundary\r\n";
                 $body .="Content-Type: $type; name=".$name."\r\n";
                 $body .="Content-Disposition: attachment; filename=".$name."\r\n";
@@ -184,24 +170,30 @@
                 $body .="X-Attachment-Id: ".rand(1000, 99999)."\r\n\r\n";
                 $body .= $encoded_content; // Attaching the encoded file with email
             }
+            else
+            {
+                $recipient_email = $email;
+                $body = "Booking Confirmed For $fname $mname $lname at $date $time for $deptcsv departments";
+                $headers = "From: doclabwebsite@gmail.com";
+            }
             
             $sentMailResult = mail($recipient_email, $subject, $body, $headers);
         
             if($sentMailResult )
             {
-            echo "<h3>File Sent Successfully.<h3>";
-            // unlink($name); // delete the file after attachment sent.
+                echo "Mail Confirmation Sent";
             }
             else
             {
-                error_log(error_get_last()['message']);
+                echo false;
             }
 
         }
 
+        set_time_limit(300);
         addToDatabase();
         fileUpload();
-        sleep(5);
+        sleep(10);
         sendConfirmation("",false);
         sendConfirmation("aryan.sheth@somaiya.edu",true);
         
