@@ -199,5 +199,9 @@
         
 
         ?>
+
+
+        <h1>Your Appointment has been confirmed</h1>
+        <a href = "index.html"><button>To Homepage --></button></a>
     </body>
 </html>
