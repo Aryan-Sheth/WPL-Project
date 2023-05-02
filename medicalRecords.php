@@ -1,4 +1,7 @@
 <html>
+    <head>
+        <title>Appointment Confirmation</title>
+    </head>
     <body>
         <?php
 
